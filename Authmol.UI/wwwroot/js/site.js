@@ -11,6 +11,7 @@ const cepSpinner = document.getElementById("cep-spinner");
 const submitSpinner = document.getElementById("submit-spinner");
 const form = document.getElementById("registerForm");
 const submitBtn = document.getElementById("registerSubmit");
+const btnText = document.getElementById("btn-text");
 
 cepInput.addEventListener("keyup", async e => {
     const valid = validar(e.target.value);
@@ -26,7 +27,9 @@ cepInput.addEventListener("keyup", async e => {
 });
 
 form.addEventListener("submit", () => {
+    btnText.innerHTML = "";
     submitSpinner.classList.remove("d-none");
+    submitBtn.disabled = true;
     if (checkErrors) return;
 
     submitBtn.disabled = true;

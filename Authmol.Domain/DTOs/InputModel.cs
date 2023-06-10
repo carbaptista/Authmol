@@ -20,6 +20,7 @@ public class InputModel
     [Compare("Password", ErrorMessage = "A senha e a confirmação de senha não são iguais.")]
     public string ConfirmPassword { get; set; }
 
+    [Required(ErrorMessage = "*Obrigatório")]
     public string CEP { get; set; }
 
     [Required(ErrorMessage = "*Obrigatório")]
