@@ -37,6 +37,12 @@ builder.Services.Configure<IdentityOptions>(options =>
 
 var app = builder.Build();
 
+using (var scope = app.Services.CreateScope())
+{
+  var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+  dbContext.Database.EnsureCreated();
+}
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
