@@ -1,0 +1,75 @@
+﻿@page "/cadastro"
+@model RegisterModel
+@{
+    ViewData["Title"] = "Cadastro";
+}
+
+<div class="row">
+    <div class="container">
+        <div class="offset-3 col-6">
+            <h3 class="text-center  mb-4">@ViewData["Title"]</h3>
+            <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                <div class="form-floating mb-1">
+                    <input asp-for="Input.Email" class="form-control" aria-required="true" placeholder="name@example.com" />
+                    <label class="ms-2" asp-for="Input.Email">Email<sup class="text-danger">*</sup></label>
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-1">
+                    <input asp-for="Input.Password" class="form-control" autocomplete="off" aria-required="true" placeholder="senha" />
+                    <label class="ms-2" asp-for="Input.Password">Senha<sup class="text-danger">*</sup></label>
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-1">
+                    <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="off" aria-required="true" placeholder="senha" />
+                    <label class="ms-2" asp-for="Input.ConfirmPassword">Confirme a senha<sup class="text-danger">*</sup></label>
+                    <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-1">
+                    <input asp-for="Input.CEP" class="form-control" aria-required="true" placeholder="CEP" />
+                    <div id="cep-spinner" class="spinner-border spinner-border-sm mt-2 ms-2 d-none" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <label class="ms-2" asp-for="Input.CEP">CEP<sup class="text-danger">*</sup></label>
+                    <span id="cep-error-span" asp-validation-for="Input.CEP" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-1">
+                    <input asp-for="Input.Complemento" class="form-control" aria-required="true" placeholder="Complemento" />
+                    <label class="ms-2" asp-for="Input.Complemento">Complemento</label>
+                    <span asp-validation-for="Input.Complemento" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-1">
+                    <input asp-for="Input.Estado" class="form-control" aria-required="true" placeholder="Estado" readonly="readonly" />
+                    <label class="ms-2" asp-for="Input.Estado">Estado<sup class="text-danger">*</sup></label>
+                    <span asp-validation-for="Input.Estado" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-1">
+                    <input asp-for="Input.Cidade" class="form-control" aria-required="true" placeholder="Cidade" readonly="readonly" />
+                    <label class="ms-2" asp-for="Input.Cidade">Cidade<sup class="text-danger">*</sup></label>
+                    <span asp-validation-for="Input.Cidade" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-1">
+                    <div class="form-floating mb-1 col">
+                        <input asp-for="Input.Bairro" class="form-control" aria-required="true" placeholder="Bairro" readonly="readonly" />
+                        <label class="ms-2" asp-for="Input.Bairro">Bairro<sup class="text-danger">*</sup></label>
+                        <span asp-validation-for="Input.Bairro" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-1 col">
+                        <input asp-for="Input.Logradouro" class="form-control" aria-required="true" placeholder="Logradouro" readonly="readonly" />
+                        <label class="ms-2" asp-for="Input.Logradouro">Logradouro<sup class="text-danger">*</sup></label>
+                        <span asp-validation-for="Input.Logradouro" class="text-danger"></span>
+                    </div>
+                </div>
+                <button id="registerSubmit" type="submit" class="w-100 btn btn-success">
+                    <div id="submit-spinner" class="spinner-border spinner-border-sm d-none" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <span>Cadastrar</span>
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
