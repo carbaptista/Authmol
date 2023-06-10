@@ -3,10 +3,12 @@
 #nullable disable
 
 using Authmol.Application.Services;
+using Authmol.Application.Services.Email;
 using Authmol.Domain.DTOs;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.AspNetCore.Identity.UI.V4.Pages.Account.Internal;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
@@ -22,7 +24,7 @@ public class RegisterModel : PageModel
     private readonly IUserStore<IdentityUser> _userStore;
     private readonly IUserEmailStore<IdentityUser> _emailStore;
     private readonly ILogger<RegisterModel> _logger;
-    private readonly IEmailSender _emailSender;
+    private readonly IMailService _emailService;
     private readonly IUserService _userService;
 
     public RegisterModel(
@@ -30,16 +32,16 @@ public class RegisterModel : PageModel
         IUserStore<IdentityUser> userStore,
         SignInManager<IdentityUser> signInManager,
         ILogger<RegisterModel> logger,
-        IEmailSender emailSender,
-        IUserService userService)
+        IUserService userService,
+        IMailService emailService)
     {
         _userManager = userManager;
         _userStore = userStore;
         _emailStore = GetEmailStore();
         _signInManager = signInManager;
         _logger = logger;
-        _emailSender = emailSender;
         _userService = userService;
+        _emailService = emailService;
     }
 
     [BindProperty]
@@ -80,8 +82,15 @@ public class RegisterModel : PageModel
                     values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
                     protocol: Request.Scheme);
 
-                await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                    $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                MailData mailData = new()
+                {
+                    EmailBody = $"Confirme seu email clicando <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>aqui.</a>",
+                    EmailSubject = $"Authmol - Confirme seu email",
+                    EmailToName = Input.Email,
+                    EmailToId = Input.Email
+                };
+
+                await _emailService.SendVerificationMailAsync(mailData);
 
                 if (_userManager.Options.SignIn.RequireConfirmedAccount)
                 {
