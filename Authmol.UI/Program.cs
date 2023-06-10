@@ -12,10 +12,17 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlite(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
+//var logger = new LoggerConfiguration()
+//    .ReadFrom.Configuration(builder.Configuration)
+//    .CreateLogger();
+
 builder.Services.AddTransient<IUserService, UserService>();
 
-builder.Host.UseSerilog((context, configuration) => 
-    configuration.ReadFrom.Configuration(context.Configuration));
+//builder.Logging.ClearProviders();
+//builder.Logging.AddSerilog(logger);
+
+builder.Host.UseSerilog((hostContext, services, logger) =>
+    logger.ReadFrom.Configuration(hostContext.Configuration));
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
@@ -44,8 +51,6 @@ else
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
-
-app.UseSerilogRequestLogging();
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();

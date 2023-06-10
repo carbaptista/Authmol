@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/Authmol.UI/Authmol.db
+/Authmol.UI/Authmol.db-shm
+/Authmol.UI/Authmol.db-wal

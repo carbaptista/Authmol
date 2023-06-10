@@ -4,7 +4,6 @@
 
 using Authmol.Application.Services;
 using Authmol.Domain.DTOs;
-using Authmol.Domain.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
@@ -70,7 +69,7 @@ public class RegisterModel : PageModel
             {
                 await _userService.CriarEndereco(Input, user.Id);
 
-                _logger.LogInformation("User created a new account with password.");
+                _logger.LogInformation("User with Id {@Id} created - {@DateTimeUtc}", user.Id, DateTime.UtcNow);
 
                 var userId = await _userManager.GetUserIdAsync(user);
                 var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
@@ -100,6 +99,7 @@ public class RegisterModel : PageModel
             }
         }
 
+        _logger.LogError("Error creating user - {@DateTimeUtc}", DateTime.UtcNow);
         return Page();
     }
 

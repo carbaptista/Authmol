@@ -26,11 +26,12 @@ cepInput.addEventListener("keyup", async e => {
 });
 
 form.addEventListener("submit", () => {
+    submitSpinner.classList.remove("d-none");
     if (checkErrors) return;
 
     submitBtn.disabled = true;
     submitBtn.childNodes[3].classList.add("d-none");
-    submitSpinner.classList.remove("d-none");
+    submitSpinner.classList.add("d-none");
 });
 
 const validar = val => {
