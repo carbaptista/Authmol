@@ -1,7 +1,7 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using MailKit.Net.Smtp;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using MimeKit;
-using MailKit.Net.Smtp;
 
 namespace Authmol.Application.Services.Email;
 public class MailService : IMailService

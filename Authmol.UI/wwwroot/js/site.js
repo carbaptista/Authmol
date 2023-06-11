@@ -37,11 +37,6 @@ if (registerForm) {
         submitBtn.disabled = true;
         btnText.innerHTML = "";
         submitSpinner.classList.remove("d-none");
-
-        //if (checkErrors) return;
-
-        //submitBtn.childNodes[3].classList.add("d-none");
-        //submitSpinner.classList.add("d-none");
     });
 }
 
@@ -59,11 +54,6 @@ const validar = val => {
 
     return !temLetras && tamanhoCorreto;
 }
-
-//const checkErrors = () => {
-//    const errors = document.querySelectorAll(".field-validation-error");
-//    return errors.length > 0;
-//}
 
 const getEndereco = async cep => {
     cepSpinner.classList.remove("d-none");

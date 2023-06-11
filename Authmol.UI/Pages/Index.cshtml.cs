@@ -3,7 +3,6 @@ using Authmol.Domain.DTOs;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using System.Reflection.Metadata.Ecma335;
 
 namespace Authmol.UI.Pages;
 public class IndexModel : PageModel
