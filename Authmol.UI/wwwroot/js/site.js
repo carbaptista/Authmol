@@ -9,33 +9,49 @@ const bairroInput = document.getElementById("Input_Bairro")
 const estadoInput = document.getElementById("Input_Estado")
 const cepSpinner = document.getElementById("cep-spinner");
 const submitSpinner = document.getElementById("submit-spinner");
-const form = document.getElementById("registerForm");
+const registerForm = document.getElementById("registerForm");
 const submitBtn = document.getElementById("registerSubmit");
 const btnText = document.getElementById("btn-text");
+const loginForm = document.getElementById("login-form");
+const loginBtn = document.getElementById("login-btn");
+const loginBtnText = document.getElementById("login-btn-text");
+const loginSpinner = document.getElementById("login-spinner");
 
-cepInput.addEventListener("keyup", async e => {
-    const valid = validar(e.target.value);
-    cepErrorSpan.innerHTML = "";
-    if (!valid) {
-        cepErrorSpan.innerHTML = "CEP inválido";
-        limparCampos();
-        return;
-    }
+if (cepInput) {
+    cepInput.addEventListener("keyup", async e => {
+        const valid = validar(e.target.value);
+        cepErrorSpan.innerHTML = "";
+        if (!valid) {
+            cepErrorSpan.innerHTML = "CEP inválido";
+            limparCampos();
+            return;
+        }
 
-    const numeros = e.target.value.replace(/\D/g, '');
-    await getEndereco(numeros);
-});
+        const numeros = e.target.value.replace(/\D/g, '');
+        await getEndereco(numeros);
+    });
+}
 
-form.addEventListener("submit", () => {
-    btnText.innerHTML = "";
-    submitSpinner.classList.remove("d-none");
-    submitBtn.disabled = true;
-    if (checkErrors) return;
+if (registerForm) {
+    registerForm.addEventListener("submit", () => {
+        submitBtn.disabled = true;
+        btnText.innerHTML = "";
+        submitSpinner.classList.remove("d-none");
 
-    submitBtn.disabled = true;
-    submitBtn.childNodes[3].classList.add("d-none");
-    submitSpinner.classList.add("d-none");
-});
+        //if (checkErrors) return;
+
+        //submitBtn.childNodes[3].classList.add("d-none");
+        //submitSpinner.classList.add("d-none");
+    });
+}
+
+if (loginForm) {
+    loginForm.addEventListener("submit", () => {
+        loginBtn.disabled = true;
+        loginBtnText.innerHTML = "";
+        loginSpinner.classList.remove("d-none");
+    });
+}
 
 const validar = val => {
     const temLetras = /[a-zA-Z]/g.test(val);
@@ -44,10 +60,10 @@ const validar = val => {
     return !temLetras && tamanhoCorreto;
 }
 
-const checkErrors = () => {
-    const errors = document.querySelectorAll(".field-validation-error");
-    return errors.length > 0;
-}
+//const checkErrors = () => {
+//    const errors = document.querySelectorAll(".field-validation-error");
+//    return errors.length > 0;
+//}
 
 const getEndereco = async cep => {
     cepSpinner.classList.remove("d-none");

@@ -364,4 +364,4 @@ FodyWeavers.xsd
 /Authmol.UI/Authmol.db
 /Authmol.UI/Authmol.db-shm
 /Authmol.UI/Authmol.db-wal
-logs/
+/Authmol.UI/logs/log-20230610.txt

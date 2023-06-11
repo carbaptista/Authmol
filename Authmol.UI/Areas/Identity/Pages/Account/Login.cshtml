@@ -2,14 +2,14 @@
 @model LoginModel
 
 @{
-    ViewData["Title"] = "Log in";
+    ViewData["Title"] = "Entrar";
 }
 
 <div class="row">
     <div class="container mt-5">
         <div class="offset-3 col-6">
             <h3 class="text-center  mb-4">@ViewData["Title"]</h3>
-            <form id="account" method="post">
+            <form id="login-form" method="post">
                 <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
                 <div class="form-floating mb-1">
                     <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
@@ -26,7 +26,12 @@
                     <label class="form-check-label" asp-for="Input.RememberMe">@Html.DisplayNameFor(m => m.Input.RememberMe)</label>
                 </div>
                 <div>
-                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-success">Log in</button>
+                    <button id="login-btn" type="submit" class="w-100 btn btn-lg btn-success">
+                    <div id="login-spinner" class="spinner-border spinner-border-sm d-none" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                      <span id="login-btn-text">Log in</span>
+                    </button>
                 </div>
                 <div>
                     <p class="mt-2">
@@ -38,6 +43,3 @@
     </div>
 </div>
 
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-}

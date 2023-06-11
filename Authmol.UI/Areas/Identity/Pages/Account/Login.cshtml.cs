@@ -31,11 +31,11 @@ public class LoginModel : PageModel
 
     public class InputModel
     {
-        [Required]
+        [Required(ErrorMessage = "Insira um email")]
         [EmailAddress]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Insira uma senha")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
@@ -73,18 +73,9 @@ public class LoginModel : PageModel
                 _logger.LogInformation("User logged in.");
                 return LocalRedirect(returnUrl);
             }
-            if (result.RequiresTwoFactor)
-            {
-                return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });
-            }
-            if (result.IsLockedOut)
-            {
-                _logger.LogWarning("User account locked out.");
-                return RedirectToPage("./Lockout");
-            }
             else
             {
-                ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                ModelState.AddModelError(string.Empty, "Login inválido");
                 return Page();
             }
         }
