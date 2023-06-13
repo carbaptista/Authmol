@@ -10,13 +10,14 @@ Desafio da Bemol Digital
 ## Requisitos
 - .NET SDK 7
 
-## InstruÁıes
-Pela natureza do projeto e para ter certeza de que o avaliador possa test·-lo com facilidade, escolhi por usar o SQLite,
-de forma que o ˙nico requisito seja o SDK em si. Em relaÁ„o ‡s migraÁıes do banco, o program.cs j· contÈm o comando necess·rio
-para que elas sejam aplicadas, ent„o sÛ È necess·rio executar os comandos a seguir:
+## Instru√ß√µes
+Pela natureza do projeto e para ter certeza de que o avaliador possa test√°-lo com facilidade, escolhi por usar o SQLite,
+de forma que o √∫nico requisito seja o SDK em si. Em rela√ß√£o √†s migra√ß√µes do banco, o program.cs j√° cont√©m o comando necess√°rio
+para que elas sejam aplicadas, ent√£o s√≥ √© necess√°rio executar os comandos a seguir:
 
 ```
 $ git clone https://github.com/carbaptista/Authmol.git
 $ cd Authmol\Authmol.UI
 $ dotnet run
 ```
+Ap√≥s isso, o site estar√° rodando em [localhost:5104](http://localhost:5104/)
