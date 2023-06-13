@@ -1,8 +1,8 @@
 ﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 
-using Authmol.Application.Services;
 using Authmol.Application.Services.Email;
+using Authmol.Persistence.Data;
 using Authmol.Persistence.DTOs;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
@@ -11,7 +11,6 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using System.Text;
 using System.Text.Encodings.Web;
-using System.Text.RegularExpressions;
 
 namespace Authmol.UI.Areas.Identity.Pages.Account;
 
@@ -23,14 +22,14 @@ public class RegisterModel : PageModel
     private readonly IUserEmailStore<IdentityUser> _emailStore;
     private readonly ILogger<RegisterModel> _logger;
     private readonly IMailService _emailService;
-    private readonly IUserService _userService;
+    private readonly IUserData _userData;
 
     public RegisterModel(
         UserManager<IdentityUser> userManager,
         IUserStore<IdentityUser> userStore,
         SignInManager<IdentityUser> signInManager,
         ILogger<RegisterModel> logger,
-        IUserService userService,
+        IUserData userService,
         IMailService emailService)
     {
         _userManager = userManager;
@@ -38,7 +37,7 @@ public class RegisterModel : PageModel
         _emailStore = GetEmailStore();
         _signInManager = signInManager;
         _logger = logger;
-        _userService = userService;
+        _userData = userService;
         _emailService = emailService;
     }
 
@@ -72,9 +71,9 @@ public class RegisterModel : PageModel
 
             if (result.Succeeded)
             {
-                await _userService.CriarEndereco(Input, user.Id);
+                await _userData.CriarEndereco(Input, user.Id);
 
-                _logger.LogInformation("User with Id {@Id} created - {@DateTimeUtc}", user.Id, DateTime.UtcNow);
+                _logger.LogInformation("Usuário com Id {@Id} criado - {@DateTimeUtc}", user.Id, DateTime.UtcNow);
 
                 var userId = await _userManager.GetUserIdAsync(user);
                 var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
@@ -107,7 +106,7 @@ public class RegisterModel : PageModel
             }
         }
 
-        _logger.LogError("Error creating user - {@DateTimeUtc}", DateTime.UtcNow);
+        _logger.LogError("Erro ao criar usuário - {@DateTimeUtc}", DateTime.UtcNow);
         return Page();
     }
 

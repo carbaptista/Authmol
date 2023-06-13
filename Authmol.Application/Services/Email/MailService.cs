@@ -1,5 +1,4 @@
 ﻿using MailKit.Net.Smtp;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using MimeKit;
 
@@ -7,14 +6,9 @@ namespace Authmol.Application.Services.Email;
 public class MailService : IMailService
 {
     private readonly MailSettings _mailSettings;
-    public MailService(IOptions<MailSettings> mailSettingsOptions, IConfiguration configuration)
+    public MailService(IOptions<MailSettings> mailSettingsOptions)
     {
         _mailSettings = mailSettingsOptions.Value;
-        //var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-        //if (env == "Development")
-        //{
-        //    _mailSettings.Password = configuration["MailSettings:Password"] ??= "";
-        //}
     }
 
     public async Task<bool> SendVerificationMailAsync(MailData mailData)

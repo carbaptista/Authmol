@@ -1,7 +1,7 @@
 ﻿using Authmol.Persistence.DTOs;
 
-namespace Authmol.Application.Services;
-public interface IUserService
+namespace Authmol.Persistence.Data;
+public interface IUserData
 {
     Task CriarEndereco(InputModel input, string userId);
 }

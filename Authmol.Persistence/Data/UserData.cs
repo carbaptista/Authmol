@@ -1,13 +1,12 @@
-﻿using Authmol.Persistence.Data;
-using Authmol.Persistence.DTOs;
+﻿using Authmol.Persistence.DTOs;
 using Authmol.Persistence.Models;
 
-namespace Authmol.Application.Services;
-public class UserService : IUserService
+namespace Authmol.Persistence.Data;
+public class UserData : IUserData
 {
     private readonly ApplicationDbContext _context;
 
-    public UserService(ApplicationDbContext context)
+    public UserData(ApplicationDbContext context)
     {
         _context = context;
     }

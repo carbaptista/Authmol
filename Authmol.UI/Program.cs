@@ -1,4 +1,3 @@
-using Authmol.Application.Services;
 using Authmol.Application.Services.Email;
 using Authmol.Persistence.Data;
 using Microsoft.AspNetCore.Identity;
@@ -15,7 +14,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddTransient<IUserService, UserService>();
+builder.Services.AddTransient<IUserData, UserData>();
 builder.Services.AddTransient<IMailService, MailService>();
 
 builder.Host.UseSerilog((hostContext, services, logger) =>
