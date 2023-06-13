@@ -20,4 +20,4 @@ $ git clone https://github.com/carbaptista/Authmol.git
 $ cd Authmol\Authmol.UI
 $ dotnet run
 ```
-Após isso, o site estará rodando em [localhost:5104](http://localhost:5104/)
+Após isso, o site estará rodando em [localhost:5104](http://localhost:5104/) ou [localhost:7115](http://localhost:7115/)
