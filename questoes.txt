@@ -1,0 +1,20 @@
+1. A solução deve ser disponibilizada em Cloud ou On-premise?
+	Cloud, apesar de On-Premise também ser possível, a primeira opção acaba sendo melhor na maioria dos casos, já que uma grande parte do trabalho é terceirizado para uma empresa especializada, além de ter um tempo de implementação menor e custos iniciais mais baixos.
+
+
+2. Considerando a participação de 4 pessoas técnicas para o desenvolvimento dessa solução,
+responda qual ferramenta acreditas ser apropriada para o controle de tarefas da equipe,
+a ferramenta é ágil?
+	Com um time de apenas 4 pessoas sem um gerente exercendo exclusivamente essa função, o mais recomendado seria uma ferramenta simples como o kanban. Uma ferramenta que não seja muito complexa é preferível pois, dessa forma, a atribuição principal, que é o desenvolvimento do projeto, não é prejudicada. Sim, o kanban é comumente utilizado em metodologias ágeis.
+
+
+3. Você se sente capaz de liderar esta equipe? Por quê?
+	Isso dependeria do nível de senioridade dos outros membros do time. Caso eu seja o mais qualificado para essa função, sim.
+
+
+4. Se pudesse sugerir uma melhoria, mudança ou oportunidade. O que seria?
+	Em relação ao programa desenvolvido por mim, diria que poderiam ser implementadas opções de login externo, como login com Google ou Microsoft. Também poderia ser utilizado um serviço de autenticação como Firebase Auth no lugar do Identity, caso terceirizar ainda mais essa tarefa seja mais apropriado. Caso a pergunta esteja se referindo ao desafio em si, diria que além do cadastro, poderia ser pedido também um login, e alguma página que somente seja visível após a autenticação.
+
+
+5. Acha válido esse desafio para o processo que está participando?
+	Sim, autenticação e autorização são partes importantes de quase todos os projetos, e domínio desses conceitos é essencial.
