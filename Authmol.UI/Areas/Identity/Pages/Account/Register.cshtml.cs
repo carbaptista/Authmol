@@ -1,6 +1,5 @@
 ﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
-#nullable disable
 
 using Authmol.Application.Services;
 using Authmol.Application.Services.Email;
@@ -12,6 +11,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using System.Text;
 using System.Text.Encodings.Web;
+using System.Text.RegularExpressions;
 
 namespace Authmol.UI.Areas.Identity.Pages.Account;
 
@@ -43,18 +43,23 @@ public class RegisterModel : PageModel
     }
 
     [BindProperty]
-    public InputModel Input { get; set; }
-    public string ReturnUrl { get; set; }
-    public IList<AuthenticationScheme> ExternalLogins { get; set; }
+    public InputModel Input { get; set; } = new();
+    public string? ReturnUrl { get; set; }
+    public IList<AuthenticationScheme>? ExternalLogins { get; set; }
+    public List<string> Erros { get; set; } = new();
 
-    public async Task OnGetAsync(string returnUrl = null)
+    public async Task OnGetAsync(string? returnUrl)
     {
-        ReturnUrl = returnUrl;
+        ReturnUrl ??= Url.Content("~/");
         ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
     }
 
-    public async Task<IActionResult> OnPostAsync(string returnUrl = null)
+    public async Task<IActionResult> OnPostAsync(string? returnUrl)
     {
+        await CheckDuplicateEmail();
+        if (Erros.Count > 0)
+            return Page();
+
         returnUrl ??= Url.Content("~/");
         ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
         if (ModelState.IsValid)
@@ -82,7 +87,7 @@ public class RegisterModel : PageModel
 
                 MailData mailData = new()
                 {
-                    EmailBody = $"Confirme seu email clicando <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>aqui.</a>",
+                    EmailBody = $"Confirme seu email clicando <a href='{HtmlEncoder.Default.Encode(callbackUrl!)}'>aqui.</a>",
                     EmailSubject = $"Authmol - Confirme seu email",
                     EmailToName = Input.Email,
                     EmailToId = Input.Email
@@ -99,10 +104,6 @@ public class RegisterModel : PageModel
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     return LocalRedirect(returnUrl);
                 }
-            }
-            foreach (var error in result.Errors)
-            {
-                ModelState.AddModelError(string.Empty, error.Description);
             }
         }
 
@@ -131,5 +132,12 @@ public class RegisterModel : PageModel
             throw new NotSupportedException("The default UI requires a user store with email support.");
         }
         return (IUserEmailStore<IdentityUser>)_userStore;
+    }
+
+    private async Task CheckDuplicateEmail()
+    {
+        var existe = await _userManager.FindByEmailAsync(Input.Email ?? "") is not null;
+        if (existe)
+            ModelState.AddModelError("Input.Email", "Email já cadastrado");
     }
 }

@@ -6,7 +6,7 @@ public class Endereco
 {
     public int EnderecoId { get; set; }
     public required string UserId { get; set; }
-    public IdentityUser User { get; set; }
+    public IdentityUser? User { get; set; }
     public required string CEP { get; set; }
     public required string Estado { get; set; }
     public required string Cidade { get; set; }

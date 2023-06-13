@@ -21,8 +21,10 @@ if (cepInput) {
     cepInput.addEventListener("keyup", async e => {
         const valid = validar(e.target.value);
         cepErrorSpan.innerHTML = "";
+        submitBtn.disabled = false;
         if (!valid) {
             cepErrorSpan.innerHTML = "CEP inválido";
+            submitBtn.disabled = true;
             limparCampos();
             return;
         }
@@ -49,10 +51,11 @@ if (loginForm) {
 }
 
 const validar = val => {
-    const temLetras = /[a-zA-Z]/g.test(val);
+    const regex = /^.*\d{5}-?\d{3}$/
+    const formato = regex.test(val);
     const tamanhoCorreto = val.replace(/\D/g, '').length === 8;
 
-    return !temLetras && tamanhoCorreto;
+    return formato && tamanhoCorreto;
 }
 
 const getEndereco = async cep => {
