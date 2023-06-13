@@ -1,6 +1,6 @@
 using Authmol.Application.Services;
 using Authmol.Application.Services.Email;
-using Authmol.Domain.Data;
+using Authmol.Persistence.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Serilog;

@@ -3,7 +3,7 @@
 
 using Authmol.Application.Services;
 using Authmol.Application.Services.Email;
-using Authmol.Domain.DTOs;
+using Authmol.Persistence.DTOs;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;

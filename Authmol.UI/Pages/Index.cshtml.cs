@@ -1,5 +1,5 @@
-﻿using Authmol.Domain.Data;
-using Authmol.Domain.DTOs;
+﻿using Authmol.Persistence.Data;
+using Authmol.Persistence.DTOs;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;

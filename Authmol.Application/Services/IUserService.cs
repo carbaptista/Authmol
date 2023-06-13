@@ -1,4 +1,4 @@
-﻿using Authmol.Domain.DTOs;
+﻿using Authmol.Persistence.DTOs;
 
 namespace Authmol.Application.Services;
 public interface IUserService

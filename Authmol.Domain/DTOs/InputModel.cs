@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Authmol.Domain.DTOs;
+namespace Authmol.Persistence.DTOs;
 public class InputModel
 {
     [Required(ErrorMessage = "*Obrigatório")]

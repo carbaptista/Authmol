@@ -1,6 +1,6 @@
-﻿using Authmol.Domain.Data;
-using Authmol.Domain.DTOs;
-using Authmol.Domain.Models;
+﻿using Authmol.Persistence.Data;
+using Authmol.Persistence.DTOs;
+using Authmol.Persistence.Models;
 
 namespace Authmol.Application.Services;
 public class UserService : IUserService

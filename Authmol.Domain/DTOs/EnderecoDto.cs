@@ -1,4 +1,4 @@
-﻿namespace Authmol.Domain.DTOs;
+﻿namespace Authmol.Persistence.DTOs;
 public class EnderecoDto
 {
     public required string CEP { get; set; }

@@ -22,6 +22,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Authmol.Application\Authmol.Application.csproj" />
     <ProjectReference Include="..\Authmol.Domain\Authmol.Domain.csproj" />
+    <ProjectReference Include="..\Authmol.Persistence\Authmol.Persistence.csproj" />
   </ItemGroup>
 
 </Project>

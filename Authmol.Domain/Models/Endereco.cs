@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace Authmol.Domain.Models;
+namespace Authmol.Persistence.Models;
 
 public class Endereco
 {

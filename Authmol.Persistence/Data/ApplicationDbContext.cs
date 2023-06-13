@@ -1,8 +1,9 @@
-﻿using Authmol.Domain.Models;
+﻿using Authmol.Persistence.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+#nullable disable
 
-namespace Authmol.Domain.Data;
+namespace Authmol.Persistence.Data;
 public class ApplicationDbContext : IdentityDbContext
 {
     public DbSet<Endereco> Enderecos { get; set; }
