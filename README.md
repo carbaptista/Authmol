@@ -21,3 +21,7 @@ $ cd Authmol\Authmol.UI
 $ dotnet run
 ```
 Após isso, o site estará rodando em [localhost:5104](http://localhost:5104/) ou [localhost:7115](http://localhost:7115/)
+
+## Diagramas
+![Diagrama 1](authmol.png "Diagrama 1")
+![Diagrama 2](solucao.png "Diagrama 2")
