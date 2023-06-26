@@ -36,9 +36,11 @@ if (cepInput) {
 
 if (registerForm) {
     registerForm.addEventListener("submit", () => {
-        submitBtn.disabled = true;
-        btnText.innerHTML = "";
-        submitSpinner.classList.remove("d-none");
+        if($(loginForm).valid()){
+            submitBtn.disabled = true;
+            btnText.innerHTML = "";
+            submitSpinner.classList.remove("d-none");
+        }
     });
 }
 
